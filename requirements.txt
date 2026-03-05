@@ -1,0 +1,6 @@
+yfinance
+pandas
+pandas_market_calendars
+scipy
+python-dotenv
+requests
