@@ -4,8 +4,8 @@
 A lightweight, desk‑style pricing engine for **SPY vertical spreads**, designed for **intraday limit‑order decision making**.  
 This tool computes:
 
-- The **implied volatilities** of each leg at the current spot price \(S0\)  
-- The **future value** of the vertical spread at a hypothetical spot \(S1\)  
+- The **implied volatilities** of each leg at the current spot price \(S₀\)  
+- The **future value** of the vertical spread at a hypothetical spot \(S₁\)  
 - A **spot ladder** showing how the spread behaves across multiple scenarios  
 - Support for **long** and **short** vertical spreads  
 
@@ -33,7 +33,7 @@ It does this by:
 
 - Extracting IVs from real market bid/ask  
 - Freezing those IVs (**Sticky Strike**)  
-- Repricing each leg at the future spot \(S1\)  
+- Repricing each leg at the future spot \(S₁\)  
 - Computing the vertical spread value under long/short positioning 
 
 
@@ -69,7 +69,7 @@ python vertical_engine.py --expiration 2026-03-06 --ladder --pct_moves -0.015 -0
 - Real‑time VIX (CNBC RapidAPI) 
 - Automated strike selection based on expected move  
 - Bid/ask‑aware IV extraction  
-- Black‑Scholes repricing at future spot \(S1\)  
+- Black‑Scholes repricing at future spot \(S₁\)  
 - Sticky Strike volatility assumption  
 - Support for **long** and **short** vertical spreads
 - Spot ladder scenario analysis  
@@ -117,9 +117,9 @@ IV_long(S₁)  = IV_long(S₀)
 
 Using the Black‑Scholes model:
 
-p_short_bsm = BSM(S1, K_short, iv_short)
+p_short_bsm = BSM(S₁, K_short, iv_short)
 
-p_long_bsm  = BSM(S1, K_long, iv_long)
+p_long_bsm  = BSM(S₁, K_long, iv_long)
 
 ---
 
