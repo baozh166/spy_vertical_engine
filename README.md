@@ -1,27 +1,79 @@
-# SPY Vertical Spread Pricing Engine (Sticky Strike Model)
+# 📘 SPY Vertical Spread Pricing Engine  
+### *Sticky Strike • Intraday Modeling • Limit Order Optimization*
 
-This project implements a desk‑style options pricing engine for **SPY 5‑DTE vertical spreads**, designed specifically for traders who place **limit orders** and expect fills within **minutes to a few hours**.  
-The engine computes:
+A lightweight, desk‑style pricing engine for **SPY vertical spreads**, designed for **intraday limit‑order decision making**.  
+This tool computes:
 
-- The **implied volatilities** of each leg at the current spot price **S₀**
-- The **future value** of the vertical spread at a hypothetical spot price **S₁**
-- A **spot ladder** showing how the spread behaves across multiple S₁ scenarios
+- The **implied volatilities** of each leg at the current spot price \(S0\)  
+- The **future value** of the vertical spread at a hypothetical spot \(S1\)  
+- A **spot ladder** showing how the spread behaves across multiple scenarios  
+- Support for **long** and **short** vertical spreads  
 
-The core of the engine is the **Sticky Strike assumption**, which is the most realistic model for short‑dated SPY options over intraday horizons.
+The engine uses the **Sticky Strike** assumption — the most realistic model for repricing short‑dated SPY options over minutes to hours.
 
 ---
 
-## 🔍 Why This Engine Exists
+## 🎯 Why This Engine Exists
 
-When selling (or buying) short‑dated vertical spreads, traders often want to know:
+When trading short‑dated SPY vertical spreads, one of the most important questions is:
 
 > **“If SPY moves to S₁ later today, what will my vertical spread be worth?”**
 
-This engine answers that question precisely.
+Most traders place limit orders with a vague sense of hope:
 
-It computes the **vertical spread value at S₁**, using the **same implied volatilities measured at S₀**, which is exactly how real market makers approximate intraday repricing for short‑dated options.
+> *“I hope I get filled.”*
 
----
+This engine turns that uncertainty into precision:
+
+> **“I know what I’m asking for.”**
+
+By computing the fair value of your vertical spread at a future spot price, the engine lets you set limit orders with intention rather than guesswork.
+
+It does this by:
+
+- Extracting IVs from real market bid/ask  
+- Freezing those IVs (**Sticky Strike**)  
+- Repricing each leg at the future spot \(S1\)  
+- Computing the vertical spread value under long/short positioning 
+
+
+
+# 🚀 Quick Start
+
+### 1. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Add your RapidAPI key to `.env`
+```bash
+echo "RAPIDAPI_CNBC_KEY=your_key_here" > .env
+```
+
+### 3. Run a single‑scenario evaluation
+```bash
+python vertical_engine.py --expiration 2026-03-06 --opt_type call --position short --S1 680
+```
+### 4. Run a spot ladder
+```bash
+python vertical_engine.py --expiration 2026-03-06 --ladder
+```
+### 5. Custom ladder
+```bash
+python vertical_engine.py --expiration 2026-03-06 --ladder --pct_moves -0.02 -0.01 0 0.01 0.02
+```
+
+## 🧩 Key Features
+
+- Real‑time SPY spot price (Yahoo Finance)  
+- Real‑time VIX (CNBC RapidAPI) 
+- Automated strike selection based on expected move  
+- Bid/ask‑aware IV extraction  
+- Black‑Scholes repricing at future spot \(S1\)  
+- Sticky Strike volatility assumption  
+- Support for **long** and **short** vertical spreads
+- Spot ladder scenario analysis  
+
 
 ## 🧠 Core Design Logic
 
@@ -54,17 +106,19 @@ This is realistic for:
 - Limit orders expected to fill within hours  
 
 So when SPY moves from **S₀ → S₁**, the engine **reuses the same IVs**:
+
 IV_short(S₁) = IV_short(S₀)
+
 IV_long(S₁)  = IV_long(S₀)
-No skew reshaping. No surface shifting.  
-Just pure Sticky Strike.
 
 ---
 
 ### 3. **Reprice each leg at the future spot S₁**
 
 Using the Black‑Scholes model:
+
 p_short_bsm = BSM(S1, K_short, iv_short)
+
 p_long_bsm  = BSM(S1, K_long, iv_long)
 
 ---
@@ -87,73 +141,91 @@ This gives the **model value** of the spread at S₁, which can be used to:
 
 ---
 
-## 📈 Spot Ladder
+### 5. Spot Ladder (optional)
 
 The engine includes a **spot ladder** that evaluates the vertical spread across multiple S₁ values:
 S₁ = S₀ × (1 + pct_move)
-
 
 
 This is extremely useful for:
 
 - Visualizing delta/gamma behavior  
 - Understanding how spreads respond to spot changes  
-- Planning limit orders based on expected intraday moves  
+- Planning limit orders based on expected intraday moves
 
 ---
 
-## 🧩 Class‑Based Architecture
+## 📊 Pricing Workflow Diagram
+<img width="1974" height="8192" alt="SPYOPP" src="https://github.com/user-attachments/assets/6c96610e-6aa2-47fd-b3f6-1461615729da" />
 
-The entire engine is wrapped in a single class:
 
-
-It handles:
-
-- Market data retrieval  
-- VIX retrieval  
-- Expected move calculation  
-- Strike selection  
-- IV computation  
-- BSM repricing  
-- Vertical spread valuation  
-- Spot ladder generation  
-
-This makes the engine easy to reuse, extend, and integrate into trading workflows.
+## 📈 Sample Output
+```
+==== Vertical Spread Value at S₁ ====
+Option type = put
+Expiration = 2026-03-06
+Vertical spread position = short
+--------------------------------------------------
+S0: 686.96
+S1: 680.0
+K_short: 671
+K_long: 670
+vertical_mkt_at_s0: -0.06
+vertical_model_at_s1: -0.14
+p_short_mkt: 0.89
+p_long_mkt: 0.83
+p_short_bsm: 2.15
+p_long_bsm: 2.01
+```
+```
+==== SPOT LADDER (Sticky Strike) ====
+Underlying S0 = 686.96
+Option type = put
+Expiration = 2026-03-06
+Confidence = 0.68
+vertical spread position = short
+--------------------------------------------------------------------------------
+      S1 |  K_short |   K_long |   Vertical mkt at S0 |   Vertical Value at S1
+--------------------------------------------------------------------------------
+  680.09 |      671 |      670 |                -0.06 |                  -0.13
+  683.53 |      671 |      670 |                -0.06 |                  -0.08
+  686.96 |      671 |      670 |                -0.06 |                  -0.05
+  690.39 |      671 |      670 |                -0.06 |                  -0.02
+  693.83 |      671 |      670 |                -0.06 |                  -0.01
+--------------------------------------------------------------------------------
+```
 
 ---
 
-## 🛠 Key Features
+## Requirements
+```
+yfinance
+pandas
+pandas_market_calendars
+scipy
+python-dotenv
+requests
+```
 
-- Real‑time SPY spot price  
-- Real‑time VIX via CNBC API  
-- Automated strike selection based on expected move  
-- Bid/ask‑aware IV extraction  
-- Sticky Strike repricing  
-- Full Black‑Scholes implementation  
-- Spot ladder scenario analysis  
-- Support for **long** and **short** vertical spreads  
-- Clean class‑based design  
+## ⚠️ Limitations
 
----
+- Sticky Strike is ideal for **intraday** modeling, not multi‑day horizons  
+- Implied volatility extraction depends on bid/ask quality and may be noisy  
+- No caching layer yet — repeated data fetches may slow down execution  
+- RapidAPI CNBC endpoint may rate‑limit heavy usage  
+- The model does not incorporate Sticky Delta, skew dynamics, or vol surface shifts  
+- Black‑Scholes assumptions (lognormal returns, constant rates, no jumps) may understate tail behavior  
 
-## 🚀 Example Usage
+## 📄 License
 
-```python
-engine = VerticalEngine(
-    rapidapi_key_cnbc=rapidapi_key,
-    expiration="2026-03-06",
-    rate=0.04,
-    opt_type="call",
-    spread_width=1,
-    confidence=0.68,
-)
+This project is licensed under the **MIT License**.  
+You are free to use, modify, distribute, and build upon this software, provided that the original license is included in any copies or substantial portions of the software.
 
-# Compute vertical value at a future spot S1
-result = engine.vertical_value_sticky_strike(S1=505)
+## ⚡Disclaimer
 
-# Generate a spot ladder
-engine.spot_ladder(pct_moves=[-0.01, -0.005, 0, 0.005, 0.01])
-
+This project is for **educational and research purposes only**.  
+Nothing in this repository constitutes financial advice, trading advice, or a recommendation to buy or sell any security or derivative.  
+Use the code and models at your own risk.
 
 
 
