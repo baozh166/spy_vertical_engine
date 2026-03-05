@@ -318,7 +318,7 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="SPY Vertical Spread Pricing Engine (Sticky Strike Model)"
+        description="SPY Vertical Spread Pricing Engine (BSM Model with Sticky Strike)"
     )
 
     parser.add_argument("--expiration", type=str, required=True,
