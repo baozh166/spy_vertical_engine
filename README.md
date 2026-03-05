@@ -60,7 +60,7 @@ python vertical_engine.py --expiration 2026-03-06 --ladder
 ```
 ### 5. Custom ladder
 ```bash
-python vertical_engine.py --expiration 2026-03-06 --ladder --pct_moves -0.02 -0.01 0 0.01 0.02
+python vertical_engine.py --expiration 2026-03-06 --ladder --pct_moves -0.015 -0.01 0 0.01 0.015
 ```
 
 ## 🧩 Key Features
