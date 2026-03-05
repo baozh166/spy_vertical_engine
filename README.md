@@ -71,7 +71,7 @@ python vertical_engine.py --expiration 2026-03-06 --ladder --pct_moves -0.015 -0
 - Automated strike selection based on expected move  
 - Bid/ask‑aware IVs extraction at spot S₀ 
 - Sticky Strike IV assumption 
-- At the current market S₀, Black‑Scholes repricing at potential spot S₁
+- At the time of the current market S₀, Black‑Scholes repricing at potential spot S₁
 - Support for **short** and **long** vertical spreads
 - Spot ladder scenario analysis  
 
