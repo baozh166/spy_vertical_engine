@@ -264,8 +264,8 @@ class VerticalEngine:
 
         sign = -1 if self.position == "short" else 1
 
-        p_short_mkt = round(opt_short["last_price"], 2)
-        p_long_mkt = round(opt_long["last_price"], 2)
+        p_short_mkt = opt_short["last_price"]
+        p_long_mkt = opt_long["last_price"]
         vertical_mkt_at_s0 = round(sign * (p_short_mkt - p_long_mkt), 2)
 
         p_short_bsm = self.price_leg_at_future_spot(S1, K_short, days, iv_short)
