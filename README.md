@@ -149,8 +149,7 @@ S₁ = S₀ × (1 + pct_move)
 
 
 This is extremely useful for:
-
-- Visualizing delta/gamma behavior  
+ 
 - Understanding how spreads respond to spot changes  
 - Planning limit orders based on expected intraday moves
 
