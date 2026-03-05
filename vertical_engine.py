@@ -184,6 +184,32 @@ class VerticalEngine:
         return K_short, K_long
 
     # ---------- IV at S0 ----------
+    def choose_price(self, bid, ask, last, max_spread=0.30):
+        """
+        Stable price selection for IV extraction.
+        """
+        # Case 1: Both bid and ask exist
+        if bid > 0 and ask > 0:
+            spread = ask - bid
+
+            # Spread too wide → fallback to last
+            if spread > max_spread:
+                return last
+
+            # Normal case → mid-price
+            mid = 0.5 * (bid + ask)
+
+            # Clamp last if it's outside the market
+            if last < bid:
+                return bid
+            if last > ask:
+                return ask
+
+            return mid
+
+        # Case 2: Missing one side → fallback to last
+        return last
+        
 
     def compute_iv_at_s0(self):
         spot = self.get_spy_spot_price()
@@ -203,8 +229,9 @@ class VerticalEngine:
         ask_long = opt_long["ask"]
         last_long = opt_long["last_price"]
 
-        short_mkt_price = bid_short if bid_short != 0 else last_short
-        long_mkt_price = ask_long if ask_long != 0 else last_long
+        short_mkt_price = self.choose_price(bid_short, ask_short, last_short)
+        long_mkt_price  = self.choose_price(bid_long,  ask_long,  last_long)
+
 
         iv_short = implied_vol(
             market_price=short_mkt_price,
