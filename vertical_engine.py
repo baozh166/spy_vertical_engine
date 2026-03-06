@@ -350,7 +350,7 @@ if __name__ == "__main__":
 
     parser.add_argument("--expiration", type=str, required=True,
                         help="Option expiration date (e.g. 2026-03-06)")
-    parser.add_argument("--opt_type", type=str, choices=["call", "put"], default="call",
+    parser.add_argument("--opt_type", type=str, choices=["call", "put"], default="put",
                         help="Option type: call or put")
     parser.add_argument("--position", type=str, choices=["long", "short"], default="short",
                         help="Vertical spread position: long or short")
