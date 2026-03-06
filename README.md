@@ -163,9 +163,9 @@ This is extremely useful for:
 | Argument | Type | Description |
 |---------|------|-------------|
 | `--expiration` | str | Required. Option expiration date in `YYYY-MM-DD` format. |
-| `--opt_type` | str | Option type: `call` or `put`. default=put |
+| `--opt_type` | str | Option type: `call` or `put`. default = put |
 | `--position` | str | Vertical spread position: `long` or `short`. default = short|
-| `--spread_width` | float | Width of the vertical spread, i.e. the difference between strikes, default=1 |
+| `--spread_width` | float | Width of the vertical spread, i.e. the difference between strikes, default = 1 |
 | `--confidence` | float | Confidence level (default=0.68) for expected move. The short strkies are 1 EM above/below spot S₀ |
 | `--S1` | float | Required. Single future spot price for repricing. |
 | `--ladder` | flag | Enables multiple spot points above/below S₀ for ladder repricing. |
