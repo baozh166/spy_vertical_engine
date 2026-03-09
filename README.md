@@ -40,6 +40,7 @@ It does this by:
 # 📁 Project Structure
 
 The project is organized into modular components to mirror real-world quant architecture:
+```
 spy_vertical_engine/
 │
 ├── models/               # Pricing models & IV solver
@@ -59,6 +60,7 @@ spy_vertical_engine/
 ├── main.py               # CLI entry point
 ├── requirements.txt
 └── .env                  # API keys (not committed)
+```
 
 
 # 🚀 Quick Start
