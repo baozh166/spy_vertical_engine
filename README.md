@@ -226,40 +226,50 @@ This is extremely useful for:
 
 --manual_hov	Manual [bid ask last] for HOV leg
 ## 📈 Sample Output
+
+```bash
+python3 main.py -e 2026-03-13 -1 670 -c 0.6 -w 2
+```
 ```
 ==== Vertical Spread Value at S₁ ====
 Option Type = put
-Expiration = 2026-03-06
-Confidence Level = 0.68
+Expiration = 2026-03-13
+Confidence Level = 0.6
+Expected Move at VIX = 25.5: ±$20.4 → [654.45, 695.25]
 Vertical Spread Position = short
 --------------------------------------------------
-S0: 686.96
-S1: 680.0
-K_short: 671
-K_long: 670
-vertical_mkt_at_s0: -0.06
-vertical_model_at_s1: -0.14
-p_short_mkt: 0.89
-p_long_mkt: 0.83
-p_short_bsm: 2.15
-p_long_bsm: 2.01
+Spot S0: 674.85
+future spot S1: 670.0
+K_HOV_short: 654
+K_LOV_long: 652
+P_HOV_short_mkt:  1.85
+P_LOV_long_mkt:  1.71
+Vertical mkt at S0: -0.14
+P_HOV_short_BSM at S1:  2.75
+P_LOV_long_BSM at S1:  2.54
+Vertical BSM at S1: -0.21
+--------------------------------------------------
+```
+```bash
+python3 main.py -e 2026-03-13 -d -c 0.6 -w 2
 ```
 ```
 ==== SPOT LADDER (Sticky Strike) ====
-Underlying S0 = 686.96
 Option Type = put
-Expiration = 2026-03-06
-Confidence Level = 0.68
-vertical Spread Position = short
---------------------------------------------------------------------------------
-      S1 |  K_short |   K_long |   Vertical mkt at S0 |   Vertical Value at S1
---------------------------------------------------------------------------------
-  680.09 |      671 |      670 |                -0.06 |                  -0.13
-  683.53 |      671 |      670 |                -0.06 |                  -0.08
-  686.96 |      671 |      670 |                -0.06 |                  -0.05
-  690.39 |      671 |      670 |                -0.06 |                  -0.02
-  693.83 |      671 |      670 |                -0.06 |                  -0.01
---------------------------------------------------------------------------------
+Expiration = 2026-03-13
+Confidence Level = 0.6
+Vertical Spread Position = short
+SPY spot S0 = 674.86
+----------------------------------------------------------------------------------
+      S1 |  K_HOV_short |   K_LOV_long | Vertical mkt at S0 | Vertical bsm at S1
+----------------------------------------------------------------------------------
+  668.11 |          654 |          652 |              -0.14 |              -0.25
+  671.49 |          654 |          652 |              -0.14 |              -0.19
+  674.86 |          654 |          652 |              -0.14 |              -0.14
+  678.23 |          654 |          652 |              -0.14 |              -0.10
+  681.61 |          654 |          652 |              -0.14 |              -0.07
+----------------------------------------------------------------------------------
+Expected Move at VIX = 25.5: ±$20.4 → [654.46, 695.26]
 ```
 
 ---
