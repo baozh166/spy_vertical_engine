@@ -37,6 +37,28 @@ It does this by:
 - Repricing each leg at the future spot \(S₁\)  
 - Computing the vertical spread value under long/short positioning 
 
+# 📁 Project Structure
+
+The project is organized into modular components to mirror real-world quant architecture:
+spy_vertical_engine/
+│
+├── models/               # Pricing models & IV solver
+│   ├── bsm.py            # Black–Scholes–Merton option pricing
+│   ├── em_vix.py         # Expected move via VIX
+|   ├── iv_solver.py      # Implied volatility root-finding
+│
+├── engine/               # Core vertical spread engine
+│   ├── vertical_engine.py
+│   ├── price_selection.py
+│
+├── utils/                # Market data & trading days
+│   ├── data.py
+│   ├── count_days.py
+│   ├── option_chian.py
+│
+├── main.py               # CLI entry point
+├── requirements.txt
+└── .env                  # API keys (not committed)
 
 
 # 🚀 Quick Start
