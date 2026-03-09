@@ -39,8 +39,8 @@ It does this by:
 
 # 📁 Project Structure
 
-The project is organized into modular components to mirror real-world quant architecture:
-```
+The project is organized into modular components to easy management:
+```text
 spy_vertical_engine/
 │
 ├── models/               # Pricing models & IV solver
