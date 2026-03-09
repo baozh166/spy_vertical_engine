@@ -37,7 +37,7 @@ It does this by:
 - Repricing each leg at the future spot \(S₁\)  
 - Computing the vertical spread value under long/short positioning 
 
-# 📁 Project Structure
+## 📁 Project Structure
 
 The project is organized into modular components to easy management:
 ```text
@@ -63,29 +63,55 @@ spy_vertical_engine/
 ```
 
 
-# 🚀 Quick Start
+## ⚙️ Installation & Setup
 
-### 1. Install dependencies
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/baozh166/spy_vertical_engine.git
+cd spy_vertical_engine
+```
+
+### 2. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Add your RapidAPI key to `.env`
+### 3. Create a .env file
+The engine requires a RapidAPI key for fetching VIX from CNBC.
+
+Create a .env file in the project root:
 ```bash
 echo "RAPIDAPI_CNBC_KEY=your_key_here" > .env
 ```
 
-### 3. Run a single‑scenario evaluation
+
+---
+
+## 🚀 Running the Engine (CLI)
+
+The CLI is powered by `main.py`.
+
+### Example 1: Price the vertical spread at a specific S₁
+
 ```bash
-python vertical_engine.py --expiration 2026-03-06 --opt_type call --position short --S1 680
+python main.py \
+    --expiration 2026-03-06 \
+    --opt_type put \
+    --position short \
+    --spread_width 1 \
+    --S1 680
 ```
-### 4. Run a spot ladder
+
+### Example 2: Run a spot ladder
 ```bash
-python vertical_engine.py --expiration 2026-03-06 --ladder
-```
-### 5. Custom ladder
-```bash
-python vertical_engine.py --expiration 2026-03-06 --ladder --pct_moves -0.015 -0.01 0 0.01 0.015
+python main.py \
+    --expiration 2026-03-06 \
+    --opt_type call \
+    --position short \
+    --spread_width 1 \
+    --ladder \
+    --moves_pct -0.01 0 0.01
 ```
 
 ## 🧩 Key Features
@@ -186,16 +212,19 @@ This is extremely useful for:
 
 | Argument | Type | Description |
 |---------|------|-------------|
-| `--expiration` | str | Required. Option expiration date in `YYYY-MM-DD` format |
-| `--opt_type` | str | Option type: `call` or `put`, default = put |
-| `--position` | str | Vertical spread position: `long` or `short`, default = short|
-| `--spread_width` | float | Width of the vertical spread, used to determine the long strikes, default = 1 |
-| `--confidence` | float | Confidence level (default=0.68) for expected move. The short strkies are 1 EM above/below spot S₀ |
-| `--S1` | float | Single future spot price for repricing |
-| `--ladder` | flag | Enables multiple spot points above/below S₀ for ladder repricing |
-| `--pct_moves` | float | Percentage move increments for spot ladder, default = -0.01 -0.005 0 0.005 0.01 |
+| `--expiration`, `-e` | str | Required. Option expiration date in `YYYY-MM-DD` format |
+| `--rate`, `-r` | str | Option type: `call` or `put`, default = put |
+| `--opt_type`, `-t` | str | Option type: `call` or `put`, default = put |
+| `--position`, `-p` | str | Vertical spread position: `long` or `short`, default = short|
+| `--spread_width`, `w` | float | Width of the vertical spread, used to determine the long strikes, default = 1 |
+| `--confidence`, `c` | float | Confidence level (default=0.68) for expected move. The short strkies are 1 EM above/below spot S₀ |
+| `--S1`, `-1` | float | Single future spot price for repricing |
+| `--ladder`, `-d` | flag | Enables multiple spot points above/below S₀ for ladder repricing |
+| `--moves_pct`, `-m` | float | Percentage move increments for spot ladder, default = -0.01 -0.005 0 0.005 0.01 |
+| `--manual_hov`, `-s` | float | Manually input [bid ask last] for the HigherOptionValue (HOV) leg at SPY spot S0 |
+| `--manual_lov`, `-l` | float | Manually input [bid ask last] for LowerOptionValue(LOV) leg at SPY spot S0 |
 
-
+--manual_hov	Manual [bid ask last] for HOV leg
 ## 📈 Sample Output
 ```
 ==== Vertical Spread Value at S₁ ====
