@@ -216,16 +216,16 @@ This is extremely useful for:
 | Argument | Type | Description |
 |---------|------|-------------|
 | `--expiration`, `-e` | str | Required. Option expiration date in `YYYY-MM-DD` format |
-| `--rate`, `-r` | float | Risk-free rae, default = 0.04 |
+| `--rate`, `-r` | float | Risk-free rate, default = 0.04 |
 | `--opt_type`, `-t` | str | Option type: `call` or `put`, default = put |
 | `--position`, `-p` | str | Vertical spread position: `long` or `short`, default = short|
-| `--spread_width`, `-w` | float | Width of the vertical spread, used to determine the long strikes, default = 1 |
-| `--confidence`, `-c` | float | Confidence level (default=0.68) for expected move. The short strkies are 1 EM above/below spot S₀ |
+| `--spread_width`, `-w` | float | Width of the vertical spread, used to determine the LOV strike, default = 1 |
+| `--confidence`, `-c` | float | Confidence level (default=0.68) for Expected Move. The HOV strkie is 1 EM above/below spot S₀ |
 | `--S1`, `-1` | float | Single future spot price for repricing |
 | `--ladder`, `-d` | flag | Enables multiple spot points above/below S₀ for ladder repricing |
 | `--moves_pct`, `-m` | float | Percentage move increments for spot ladder, default = -0.01 -0.005 0 0.005 0.01 |
-| `--manual_hov`, `-s` | float | Manually input [bid ask last] for the HigherOptionValue (HOV) leg at SPY spot S0 |
-| `--manual_lov`, `-l` | float | Manually input [bid ask last] for the LowerOptionValue (LOV) leg at SPY spot S0 |
+| `--manual_hov`, `-s` | float | Manually input [bid ask last] for HOV leg at SPY spot S0 |
+| `--manual_lov`, `-l` | float | Manually input [bid ask last] for LOV leg at SPY spot S0 |
 
 --manual_hov	Manual [bid ask last] for HOV leg
 ## 📈 Sample Output
