@@ -25,9 +25,9 @@ def main():
     parser.add_argument("--moves_pct", "-m", nargs="+", type=float,
                         help="List of percentage moves for spot ladder (e.g. -0.01 0 0.01)")
     parser.add_argument("--manual_hov", "-s", nargs=3, type=float,
-                        help="Manually input [bid ask last] for short leg at SPY spot S0")
+                        help="Manually input [bid ask last] for HigerOptionVale(HOV) leg at SPY spot S0")
     parser.add_argument("--manual_lov", "-l", nargs=3, type=float,
-                        help="Manually input [bid ask last] for long leg at SPY spot S0")
+                        help="Manually input [bid ask last] for LowerOptionVale(LOV) leg at SPY spot S0")
 
     args = parser.parse_args()
     load_dotenv()
@@ -96,3 +96,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
