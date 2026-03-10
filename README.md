@@ -216,7 +216,7 @@ This is extremely useful for:
 | Argument | Type | Description |
 |---------|------|-------------|
 | `--expiration`, `-e` | str | Required. Option expiration date in `YYYY-MM-DD` format |
-| `--rate`, `-r` | str | Option type: `call` or `put`, default = put |
+| `--rate`, `-r` | float | Risk-free rae, default = 0.04 |
 | `--opt_type`, `-t` | str | Option type: `call` or `put`, default = put |
 | `--position`, `-p` | str | Vertical spread position: `long` or `short`, default = short|
 | `--spread_width`, `-w` | float | Width of the vertical spread, used to determine the long strikes, default = 1 |
