@@ -59,7 +59,7 @@ spy_vertical_engine/
 │
 ├── main.py               # CLI entry point
 ├── requirements.txt
-└── .env                  # API keys (not committed)
+└── .env                  # API keys
 ```
 
 
