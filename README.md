@@ -195,7 +195,7 @@ This gives the **model value** of the spread at S₁, which can be used to:
 ### 5. Spot Ladder (optional)
 
 The engine includes a **spot ladder** that evaluates the vertical spread across multiple S₁ values:
-S₁ = S₀ × (1 + pct_move)
+S₁ = S₀ × (1 + move_pct)
 
 
 This is extremely useful for:
