@@ -134,11 +134,11 @@ For each leg (short and long), the engine:
 1. Pulls the option’s **bid/ask** from the SPY option chain  
 2. Computes the **implied volatility** using a Black‑Scholes root solver  
 3. Stores:
-   - `iv_short`
-   - `iv_long`
-   - `K_short`
-   - `K_long`
-   - `days_to_expiry`
+   - `iv_HOV`: the implied volatility at the HigherOptionValue leg
+   - `iv_LOV`: the implied volatility at the LowerOptionValue leg
+   - `K_HOV`: the strike at the HigherOptionValue leg
+   - `K_LOV`: the strike at the LowerOptionValue leg
+   -  and more for reporting 
 
 These IVs represent the **market’s volatility surface at S₀**.
 
