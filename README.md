@@ -222,7 +222,7 @@ This is extremely useful for:
 | `--ladder`, `-d` | flag | Enables multiple spot points above/below S₀ for ladder repricing |
 | `--moves_pct`, `-m` | float | Percentage move increments for spot ladder, default = -0.01 -0.005 0 0.005 0.01 |
 | `--manual_hov`, `-s` | float | Manually input [bid ask last] for the HigherOptionValue (HOV) leg at SPY spot S0 |
-| `--manual_lov`, `-l` | float | Manually input [bid ask last] for LowerOptionValue(LOV) leg at SPY spot S0 |
+| `--manual_lov`, `-l` | float | Manually input [bid ask last] for the LowerOptionValue (LOV) leg at SPY spot S0 |
 
 --manual_hov	Manual [bid ask last] for HOV leg
 ## 📈 Sample Output
