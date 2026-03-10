@@ -286,9 +286,8 @@ requests
 
 ## ⚠️ Limitations
 
-- Sticky Strike is ideal for **intraday** modeling, not multi‑day horizons  
-- Implied volatility extraction depends on bid/ask quality and may be noisy  
-- No caching layer yet — Spot Ladder needs repeated data fetches
+- Sticky Strike is ideal for **intraday** modeling, not multi‑day horizons
+- Adjust confidence level to automatically determine strikes, not a delta-based strike selection   
 - RapidAPI CNBC endpoint may rate‑limit heavy usage  
 - The model does not incorporate Sticky Delta, skew dynamics, or vol surface shifts  
 - Black‑Scholes assumptions (lognormal returns, constant rates, no jumps) may understate tail behavior  
