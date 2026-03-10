@@ -134,8 +134,8 @@ For each leg (short and long), the engine:
 1. Pulls the option’s **bid/ask** from the SPY option chain  
 2. Computes the **implied volatility** using a Black‑Scholes root solver  
 3. Stores:
-   - `iv_HOV`: the IV at the HigherOptionValue leg
-   - `iv_LOV`: the IV at the LowerOptionValue leg
+   - `IV_HOV`: the IV at the HigherOptionValue leg
+   - `IV_LOV`: the IV at the LowerOptionValue leg
    - `K_HOV`: the strike at the HigherOptionValue leg
    - `K_LOV`: the strike at the LowerOptionValue leg
    -  and more for reporting 
