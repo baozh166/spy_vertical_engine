@@ -252,7 +252,7 @@ Vertical BSM at S1: -0.21
 --------------------------------------------------
 ```
 
-Ladder:
+S1 Ladder:
 ```bash
 python3 main.py -e 2026-03-13 -d -c 0.6 -w 2
 ```
