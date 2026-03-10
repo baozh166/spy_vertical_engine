@@ -168,9 +168,9 @@ IV_LOV(S₁)  = IV_LOV(S₀)
 
 Using the Black‑Scholes model:
 
-p_HOV_bsm = BSM(S₁, K_HOV, iv_HOV)
+p_HOV_bsm = BSM(S₁, K_HOV, IV_HOV)
 
-p_LOV_bsm  = BSM(S₁, K_LOV, iv_LOV)
+p_LOV_bsm  = BSM(S₁, K_LOV, IV_LOV)
 
 ---
 
