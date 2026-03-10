@@ -216,8 +216,8 @@ This is extremely useful for:
 | `--rate`, `-r` | str | Option type: `call` or `put`, default = put |
 | `--opt_type`, `-t` | str | Option type: `call` or `put`, default = put |
 | `--position`, `-p` | str | Vertical spread position: `long` or `short`, default = short|
-| `--spread_width`, `w` | float | Width of the vertical spread, used to determine the long strikes, default = 1 |
-| `--confidence`, `c` | float | Confidence level (default=0.68) for expected move. The short strkies are 1 EM above/below spot S₀ |
+| `--spread_width`, `-w` | float | Width of the vertical spread, used to determine the long strikes, default = 1 |
+| `--confidence`, `-c` | float | Confidence level (default=0.68) for expected move. The short strkies are 1 EM above/below spot S₀ |
 | `--S1`, `-1` | float | Single future spot price for repricing |
 | `--ladder`, `-d` | flag | Enables multiple spot points above/below S₀ for ladder repricing |
 | `--moves_pct`, `-m` | float | Percentage move increments for spot ladder, default = -0.01 -0.005 0 0.005 0.01 |
