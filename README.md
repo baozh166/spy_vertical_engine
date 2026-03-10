@@ -289,7 +289,6 @@ requests
 - Sticky Strike is ideal for **intraday** modeling, not multi‑day horizons
 - Adjust confidence level to automatically determine strikes, not a delta-based strike selection
 - Option market price from yfinance, not a real real-time data source 
-- RapidAPI CNBC endpoint may rate‑limit heavy usage  
 - The model does not incorporate Sticky Delta, skew dynamics, or vol surface shifts  
 - Black‑Scholes assumptions (lognormal returns, constant rates, no jumps) may understate tail behavior  
 
