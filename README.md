@@ -227,7 +227,7 @@ This is extremely useful for:
 | `--manual_hov`, `-s` | float | Manually input [bid ask last] for HOV leg at SPY spot S0 |
 | `--manual_lov`, `-l` | float | Manually input [bid ask last] for LOV leg at SPY spot S0 |
 
-## 📈 Sample Output
+## 📈 Sample Script & Output
 
 Single S1:
 ```bash
