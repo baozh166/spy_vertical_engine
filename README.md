@@ -206,7 +206,10 @@ This is extremely useful for:
 ---
 
 ## 📊 Pricing Workflow Diagram
-<img width="1974" height="8192" alt="SPYOPP" src="https://github.com/user-attachments/assets/6c96610e-6aa2-47fd-b3f6-1461615729da" />
+<img width="3061" height="8192" alt="image" src="https://github.com/user-attachments/assets/dd25a223-61e4-44d5-8fa7-4d46277d15e0" />
+
+
+
 
 ## 🔧 Arguments
 
