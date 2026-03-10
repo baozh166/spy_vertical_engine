@@ -227,9 +227,11 @@ This is extremely useful for:
 --manual_hov	Manual [bid ask last] for HOV leg
 ## 📈 Sample Output
 
+bash command:
 ```bash
 python3 main.py -e 2026-03-13 -1 670 -c 0.6 -w 2
 ```
+std output:
 ```
 ==== Vertical Spread Value at S₁ ====
 Option Type = put
@@ -250,9 +252,12 @@ P_LOV_long_BSM at S1:  2.54
 Vertical BSM at S1: -0.21
 --------------------------------------------------
 ```
+
+bash command:
 ```bash
 python3 main.py -e 2026-03-13 -d -c 0.6 -w 2
 ```
+std output:
 ```
 ==== SPOT LADDER (Sticky Strike) ====
 Option Type = put
