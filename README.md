@@ -134,8 +134,8 @@ For each leg (short and long), the engine:
 1. Pulls the option’s **bid/ask** from the SPY option chain  
 2. Computes the **implied volatility** using a Black‑Scholes root solver  
 3. Stores:
-   - `iv_HOV`: the implied volatility at the HigherOptionValue leg
-   - `iv_LOV`: the implied volatility at the LowerOptionValue leg
+   - `iv_HOV`: the IV at the HigherOptionValue leg
+   - `iv_LOV`: the IV at the LowerOptionValue leg
    - `K_HOV`: the strike at the HigherOptionValue leg
    - `K_LOV`: the strike at the LowerOptionValue leg
    -  and more for reporting 
@@ -158,9 +158,9 @@ This is realistic for:
 
 So when SPY moves from **S₀ → S₁**, the engine **reuses the same IVs**:
 
-IV_short(S₁) = IV_short(S₀)
+IV_HOV(S₁) = IV_HOV(S₀)
 
-IV_long(S₁)  = IV_long(S₀)
+IV_LOV(S₁)  = IV_LOV(S₀)
 
 ---
 
@@ -168,19 +168,19 @@ IV_long(S₁)  = IV_long(S₀)
 
 Using the Black‑Scholes model:
 
-p_short_bsm = BSM(S₁, K_short, iv_short)
+p_HOV_bsm = BSM(S₁, K_HOV, iv_HOV)
 
-p_long_bsm  = BSM(S₁, K_long, iv_long)
+p_LOV_bsm  = BSM(S₁, K_LOV, iv_LOV)
 
 ---
 
 ### 4. **Compute the vertical spread value at S₁**
 
 For a **short vertical**:
-vertical_value_at_s1 = -p_short_bsm + p_long_bsm
+vertical_value_at_s1 = -p_HOV_bsm + p_LOV_bsm
 
 For a **long vertical**:
-vertical_value_at_s1 =  p_short_bsm - p_long_bsm
+vertical_value_at_s1 =  p_HOV_bsm - p_LOV_bsm
 
 
 This gives the **model value** of the spread at S₁, which can be used to:
