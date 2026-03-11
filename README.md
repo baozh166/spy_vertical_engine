@@ -159,7 +159,7 @@ Expected Move at VIX = 25.5: ±$20.4 → [654.46, 695.26]
 
 ## 🧩 Key Features
 
-- Real‑time SPY spot price (Yahoo Finance)  
+- Real‑time SPY spot price and option chains (Yahoo Finance)  
 - Real‑time VIX (CNBC RapidAPI), along with choosen confidence level, for computing expected move
 - Automated strike selection based on expected move  
 - Bid/ask‑aware IVs extraction at spot S₀ 
