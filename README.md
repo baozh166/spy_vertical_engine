@@ -259,8 +259,8 @@ This is extremely useful for:
 | `--rate`, `-r` | float | `0.04` | Risk‑free rate |
 | `--opt_type`, `-t` | str | `put` | Option type: `call` or `put` |
 | `--position`, `-p` | str | `short` | Vertical spread position: `long` or `short` |
-| `--spread_width`, `-w` | float | `1` | Width of the vertical spread (determines LOV strike) |
 | `--confidence`, `-c` | float | `0.68` | Confidence level for Expected Move; HOV strike is ±1 EM from spot S₀ |
+| `--spread_width`, `-w` | float | `1` | Width of the vertical spread (determines LOV strike) |
 | `--S1`, `-1` | float | `None` | Single future spot price for repricing |
 | `--ladder`, `-d` | flag | `False` | Enables multiple spot points above/below S₀ for ladder repricing |
 | `--moves_pct`, `-m` | float | `-0.01 -0.005 0 0.005 0.01` | Percentage move increments for spot ladder |
