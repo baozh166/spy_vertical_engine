@@ -14,10 +14,10 @@ def main():
                         help="Option type: call or put")
     parser.add_argument("--position", "-p", type=str, choices=["long", "short"], default="short",
                         help="Vertical spread position: long or short")
-    parser.add_argument("--spread_width", "-w", type=int, default=1,
-                        help="Width of the vertical spread in dollars")
     parser.add_argument("--confidence", "-c", type=float, default=0.68,
                         help="Confidence level for expected move (e.g. 0.68 or 0.95)")
+    parser.add_argument("--spread_width", "-w", type=int, default=1,
+                        help="Width of the vertical spread in dollars")
     parser.add_argument("--S1", "-1", type=float,
                         help="Future spot price to evaluate vertical value at")
     parser.add_argument("--ladder", "-d", action="store_true",
@@ -38,8 +38,8 @@ def main():
         expiration=args.expiration,
         rate=args.rate,
         opt_type=args.opt_type,
-        spread_width=args.spread_width,
         confidence=args.confidence,
+        spread_width=args.spread_width,
         position=args.position,
         manual_hov=args.manual_hov,
         manual_lov=args.manual_lov,
@@ -96,4 +96,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
