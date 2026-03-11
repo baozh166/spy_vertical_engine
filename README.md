@@ -41,7 +41,7 @@ It does this by:
 
 ## 📁 Project Structure
 
-The project is organized into modular components to easy management:
+The project is organized into modular components for easy management:
 ```text
 spy_vertical_engine/
 │
