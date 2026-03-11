@@ -173,7 +173,7 @@ Expected Move at VIX = 25.5: ±$20.4 → [654.46, 695.26]
 ## 🧠 Core Design Logic
 
 ### 1. **Compute IVs at the current spot price S₀**
-For each leg (short and long), the engine:
+For each leg (HOV and LOV), the engine:
 
 1. Pulls the option’s **bid/ask** from the SPY option chain  
 2. Computes the **implied volatility** using a Black‑Scholes root solver  
